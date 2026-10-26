@@ -1,0 +1,16 @@
+Nahid Computer — Firebase Setup Status (Admin Control Panel Edition)
+Project ID: nahidv30-f15a9
+
+Before going live:
+1. Enable Email/Password and (if desired) Google providers in Firebase Authentication. Email verification is not required by this site.
+2. Add the deployed website domain under Authentication > Settings > Authorized domains.
+3. Create/verify Firestore Database and publish firestore.rules from this ZIP.
+4. Create/verify Firebase Storage and publish storage.rules from this ZIP.
+5. Create the owner's Authentication account, copy its UID, then create admins/{UID} in Firestore with active=true (Boolean). Do not make admin status client-editable.
+6. Open admin.html, sign in as the authorized admin, and set the actual bKash number under Shop Settings before accepting payments. The WhatsApp/phone number is not automatically assumed to be the bKash number.
+7. Once the admin UID document and Firestore Rules are correctly set, use Admin Panel > “প্রাথমিক সার্ভিস যোগ” once to create starter services. After setup, add/edit/delete services and prices directly inside Admin Panel; you should not need to open Firebase Console for each service. Starter services do not contain invented prices.
+10. Order submission now reports the Order ID immediately after the order document is created. If optional file upload fails, it tells you that the order exists and that only the file upload failed, instead of misleadingly reporting that no order was created.
+8. Deploy all files in the repository root: index.html, admin.html, style.css, app.js, firebase-config.js, firestore.rules, storage.rules, README-BN.md, FIREBASE_SETUP_STATUS_BN.txt, .nojekyll.
+9. Test customer registration, admin login, service edits, order submission, file uploads, and payment verification on the live site.
+
+The Firebase web config is a public client config; never upload a service-account private key or store user passwords in Firestore. This package has been checked statically, but live Firebase/deployment behavior must still be tested in the owner's project.
